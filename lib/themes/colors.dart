@@ -39,6 +39,13 @@ const greytextbodydark = const Color(0xFFF5F5F5); // текст боди осн�
 const redSelected = const Color(0xFFFF0000); // те
 
 
+//для данного приложения
+const textLight = const Color(0xFF486581); // текст материал
+const textWight = const Color(0xFFF0F4F8); // текст аппбар
+const textDisable = const Color(0xFF829AB1); // текст hint
+
+
+
 
 
 
