@@ -15,6 +15,8 @@ class _FillingFormState extends State<FillingForm> {
     'ИИИИИИ',
     'ВВВВВВ',
   ];
+  TextEditingController _controllerNameTrable = TextEditingController();
+  TextEditingController _controllerCharacteristicTrable = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +34,20 @@ class _FillingFormState extends State<FillingForm> {
   Widget Filing(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Автор'),
-          After(context),
-          button(context),
-          DropDawnList(context)
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Автор'),
+            After(context),
+            button(context),
+            DropDawnList(context),
+            textField(context,hintText: 'Введите название кратко и по сути предложения',controller: _controllerNameTrable),
+            textField(context,text: 'Описание действительного положения с указанием существующих недостатков:',
+                hintText: 'Характеристика проблемы, которую решает рационализаторское предложение, должна описывать недостатки'
+                    ' действующей конструкции изделия, технологии производства, применяемой техники или состава материала',controller: _controllerCharacteristicTrable),
+          ],
+        ),
       ),
     );
   }
@@ -145,4 +153,12 @@ class _FillingFormState extends State<FillingForm> {
     );
   }
 
+  Widget textField (BuildContext context,{String hintText = '',String text = '',TextEditingController controller}){
+    return Column(
+      children: [
+        Text(text),
+        TextFormField(controller: controller,decoration: InputDecoration(hintText: hintText,hintMaxLines: 8),),
+      ],
+    );
+  }
 }
