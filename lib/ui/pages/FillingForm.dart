@@ -38,7 +38,7 @@ class _FillingFormState extends State<FillingForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Автор'),
+            Text('Автор',),
             After(context),
             button(context),
             DropDawnList(context),
@@ -115,15 +115,7 @@ class _FillingFormState extends State<FillingForm> {
           // elevation: 5,
           hint: Text(categories==""? 'Выберите категорию' : categoriesList,
               textAlign: TextAlign.center,
-              maxLines: 1,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: "OpenSansReg",
-                  fontSize: 13,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold
-              )),
-
+              maxLines: 1,),
           items: categoriesList.map<DropdownMenuItem<String>>(
                   (String item) {
                 return DropdownMenuItem<String>(
@@ -157,7 +149,9 @@ class _FillingFormState extends State<FillingForm> {
     return Column(
       children: [
         Text(text),
-        TextFormField(controller: controller,decoration: InputDecoration(hintText: hintText,hintMaxLines: 8),),
+        TextFormField(controller: controller,decoration: InputDecoration(hintText: hintText,
+            // hintStyle: Theme.of(context).textTheme.bodyText1,
+            hintMaxLines: 8),),
       ],
     );
   }
