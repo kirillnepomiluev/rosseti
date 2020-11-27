@@ -1,15 +1,22 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:rosseti/ui/pages/FillingForm.dart';
+import 'package:rosseti/ui/pages/mainWebPage.dart';
 
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => FillingForm());
+        if (kIsWeb) {
+           return MaterialPageRoute(builder: (_) => MainWebPage());
+         }
+           return MaterialPageRoute(builder: (_) => FillingForm());
+
+
 
 
       default:

@@ -7,10 +7,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'router.dart' as router;
 
-
+SharedPreferences prefs;
+Map <String, dynamic> curUser;
 Map <String, Object> userdata;
 bool isDarkTheme;
-SharedPreferences prefs;
+String userName = "Иванов Ф.Д.";
 
 bool isViewTypeBig = true;
 TasksBloc currentBloc;

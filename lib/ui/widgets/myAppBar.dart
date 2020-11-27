@@ -21,7 +21,6 @@ class MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-
       backgroundColor: Theme.of(context).appBarTheme.color,
       centerTitle: false,
       title: Container(
@@ -42,7 +41,6 @@ class MyAppBarState extends State<MyAppBar> {
                         currentNumber = 1;
                       });
                       currentData = Map();
-
                     })
                   : myGradientButtonWhite(context,
                       icon: Icon(Icons.play_circle_filled,
@@ -53,7 +51,6 @@ class MyAppBarState extends State<MyAppBar> {
                         currentNumber = 1;
                       });
                       currentData = Map();
-
                     }),
             ),
             Expanded(
@@ -67,7 +64,6 @@ class MyAppBarState extends State<MyAppBar> {
                         currentNumber = 4;
                       });
                       currentData = Map();
-
                     })
                   : myGradientButtonWhite(context,
                       btnText: "Сотрудники",
@@ -78,13 +74,11 @@ class MyAppBarState extends State<MyAppBar> {
                         currentNumber = 4;
                       });
                       currentData = Map();
-
                     }),
             ),
             Expanded(
               child: (currentNumber == 5)
-                  ? myGradientButton(
-                  context,
+                  ? myGradientButton(context,
                       btnText: "ТЗА",
                       icon: Icon(Icons.local_shipping,
                           color: Theme.of(context).textTheme.headline5.color),
@@ -93,19 +87,16 @@ class MyAppBarState extends State<MyAppBar> {
                         currentNumber = 5;
                       });
                       currentData = Map();
-
                     })
                   : myGradientButtonWhite(context,
                       btnText: "ТЗА",
                       icon: Icon(Icons.local_shipping,
                           color: Theme.of(context).textTheme.headline6.color),
-                      radiusCorner: 0.0,
-                  funk: () {
+                      radiusCorner: 0.0, funk: () {
                       setState(() {
                         currentNumber = 5;
                       });
                       currentData = Map();
-
                     }),
             ),
             Expanded(
@@ -119,7 +110,6 @@ class MyAppBarState extends State<MyAppBar> {
                         currentNumber = 3;
                       });
                       currentData = Map();
-
                     })
                   : myGradientButtonWhite(context,
                       btnText: "Справочники",
@@ -130,7 +120,6 @@ class MyAppBarState extends State<MyAppBar> {
                         currentNumber = 3;
                       });
                       currentData = Map();
-
                     }),
             ),
             Expanded(
@@ -144,7 +133,6 @@ class MyAppBarState extends State<MyAppBar> {
                         currentNumber = 6;
                       });
                       currentData = Map();
-
                     })
                   : myGradientButtonWhite(context,
                       btnText: "Добавить",
@@ -155,47 +143,40 @@ class MyAppBarState extends State<MyAppBar> {
                         currentNumber = 6;
                       });
                       currentData = Map();
-
                     }),
             ),
             Expanded(flex: 2, child: myLogo(context))
           ],
         ),
       ),
-      actions:
-      <Widget>[
+      actions: <Widget>[
         FlatButton(
-          onPressed: () {
-
-          },
-          child: Icon( Icons.show_chart, color: Theme.of(context).textTheme.headline6.color,),
-
-        ),
-        FlatButton(
-          onPressed: () {
-           setState(() {
-             isViewTypeBig = !isViewTypeBig;
-           });
-
-          },
+          onPressed: () {},
           child: Icon(
-            isViewTypeBig? Icons.format_align_justify : Icons.dns,
+            Icons.show_chart,
             color: Theme.of(context).textTheme.headline6.color,
           ),
         ),
         FlatButton(
           onPressed: () {
-
+            setState(() {
+              isViewTypeBig = !isViewTypeBig;
+            });
           },
+          child: Icon(
+            isViewTypeBig ? Icons.format_align_justify : Icons.dns,
+            color: Theme.of(context).textTheme.headline6.color,
+          ),
+        ),
+        FlatButton(
+          onPressed: () {},
           child: Icon(
             Icons.account_circle,
             color: Theme.of(context).textTheme.headline6.color,
           ),
         ),
         FlatButton(
-          onPressed: () {
-
-          },
+          onPressed: () {},
           child: Icon(Icons.settings,
               color: Theme.of(context).textTheme.headline6.color),
         ),
@@ -207,30 +188,14 @@ class MyAppBarState extends State<MyAppBar> {
 Widget myLogo(BuildContext context) {
   return Container(
     height: 40,
+    padding: EdgeInsets.all(8.0),
     width: 400,
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Expanded(
-          child: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/gazpromlogowhitemini.png"),
-                      fit: BoxFit.fitHeight,
-                      alignment: AlignmentDirectional.centerEnd))),
-        ),
-        Container(
-          width: 2.0,
-          padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
-          margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.0),
-          color: Theme.of(context).textTheme.headline6.color,
-        ),
-        Expanded(
-            child: Text(
-          "АЭРО",
-          style: Theme.of(context).textTheme.headline2,
-        ))
-      ],
-    ),
+    color: Colors.white,
+    child: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/logo2rosseti.png"),
+                fit: BoxFit.fitHeight,
+                alignment: AlignmentDirectional.center))),
   );
 }
