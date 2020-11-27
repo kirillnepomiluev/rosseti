@@ -19,6 +19,16 @@ const greytextbodylight = const Color(0xFF757575); // текст боди осн
 const btngradientstartlight = const Color(0xff147DE1); // синие кнопки с градиентом
 const btngradientendlight = const Color(0xff1B5E9E); // синие кнопки с градиентом
 
+const maingazprom = const Color(0xFF0070BA);
+const maingazpromblue = const Color(0xFF2FB4E9);
+const maingazpromlightblue = const Color(0xFF0097D8);
+const maingazpromdarkblue = const Color(0xFF004077);
+const maingazpromgrey = const Color(0xFF706F6F);
+const maingazprombiryze = const Color(0xFF3FBFAD);
+const maingazpromorange = const Color(0xFFF38B00);
+const maingazpromgreen = const Color(0xFF91993E);
+const maingazpromsilver = const Color(0xFFB2B2B2);
+
 //Темная тема
 const mainbackgrounddark = const Color(0xFF3F3F3F); //основоной задний фон бади и апп бар, экран загрузки
 const uplinedark = const Color(0xFF353535); //самая верхняя полоска

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:rosseti/blocs.dart';
 import 'package:rosseti/themes/custom_theme.dart';
 import 'package:rosseti/themes/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,6 +11,14 @@ import 'router.dart' as router;
 Map <String, Object> userdata;
 bool isDarkTheme;
 SharedPreferences prefs;
+
+bool isViewTypeBig = true;
+TasksBloc currentBloc;
+
+
+
+String currentId;
+Map<String, dynamic> currentData = Map();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
