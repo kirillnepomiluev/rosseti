@@ -37,7 +37,7 @@ class MyThemes {
       ),
       // Стиль текста по умолчанию для материала
       bodyText2: TextStyle(
-        color: greytextbodylight,
+        color: textLight,
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
         fontSize: 14,
