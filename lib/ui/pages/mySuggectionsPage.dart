@@ -12,12 +12,12 @@ import 'package:rosseti/widgets/MyScaffold.dart';
 
 import '../../data.dart';
 
-class MainWebPage extends StatefulWidget {
+class MyMainWebPage extends StatefulWidget {
   @override
-  _MainWebPageState createState() => _MainWebPageState();
+  _MyMainWebPageState createState() => _MyMainWebPageState();
 }
 
-class _MainWebPageState extends State<MainWebPage> {
+class _MyMainWebPageState extends State<MyMainWebPage> {
   String categories = 'Все';
 
   List<String> categoriesList = [
@@ -70,7 +70,7 @@ class _MainWebPageState extends State<MainWebPage> {
          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) { return FillingForm();  }));
         },
         child: Text("Добавить"),)
-      ]);
+      ], bottomItemIndex: 1);
     }
 
     return   Scaffold(
@@ -345,12 +345,15 @@ class _MainWebPageState extends State<MainWebPage> {
                                   )),
                                 ),
                                 Expanded(
-                                  child: Text(data["status"].toString(),maxLines: 2,style: TextStyle(
+                                  child: Text(data["status"].toString(),maxLines: 2,
+                                      textAlign: TextAlign.end,
+                                      style: TextStyle(
                                     color: Color(0xFF102A43),
                                     fontWeight: FontWeight.normal,
                                     fontStyle: FontStyle.normal,
                                     fontSize: 16,
                                     fontFamily: "PTRootUI",
+
                                   )),
                                 ),
                               ],

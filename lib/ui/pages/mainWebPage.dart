@@ -344,6 +344,17 @@ class _MainWebPageState extends State<MainWebPage> {
                                     fontFamily: "PTRootUI",
                                   )),
                                 ),
+                                Expanded(
+                                  child: Text(data["status"].toString(),maxLines: 2,
+                                      textAlign: TextAlign.end,
+                                      style: TextStyle(
+                                    color: Color(0xFF102A43),
+                                    fontWeight: FontWeight.normal,
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 16,
+                                    fontFamily: "PTRootUI",
+                                  )),
+                                ),
                               ],
                             ),
                           ),

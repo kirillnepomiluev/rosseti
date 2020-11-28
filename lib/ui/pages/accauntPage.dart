@@ -31,17 +31,14 @@ class _AccauntPageState extends State<AccauntPage> {
           children: <Widget>[
           Center( child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text( "Текущий аккаунт: $userName"),
+            child: Text( "Текущий аккаунт: ${curUser["name"]}"),
           ),),
-          myGradientButton(context, btnText: "Управление администраторами",
-              width: 280 ,
-              funk: () {
 
-          }),
           myGradientButton(context, btnText: "Выйти",
               width: 280 ,
               funk: () {
-
+               prefs.setString("user", null);
+            Navigator.pushReplacementNamed(context, "/login");
       }),
 
         ],)

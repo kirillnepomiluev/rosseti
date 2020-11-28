@@ -126,6 +126,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 );
               });
+          prefs.setString("user", loginTexController.text);
           tohomepage(context, value.docs.first.data() );
 
         } else {

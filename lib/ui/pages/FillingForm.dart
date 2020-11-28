@@ -64,7 +64,7 @@ class _FillingFormState extends State<FillingForm> {
   @override
   Widget build(BuildContext context) {
     return buildMyScaffold(context, Filing(context), "Форма заполнения",
-        bottomItemIndex: 3,
+        bottomItemIndex: 2,
         isAppbar: true,
         actions: [
           FlatButton(

@@ -25,6 +25,7 @@ FirebaseFirestore store = FirebaseFirestore.instance;
 
 String currentId;
 Map<String, dynamic> currentData = Map();
+bool needLogin =true;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +35,13 @@ Future<void> main() async {
     prefs = value;
     if  (prefs != null && prefs.get("isDarkTeme")!= null) {
       isDarkTheme = prefs.get("isDarkTeme");
+    }
+    if  (prefs != null && prefs.get("user")!= null) {
+      needLogin = false;
+      store.collection("users").where("login", isEqualTo: prefs.get("user")).get().then((value) {
+        if (value.docs.isNotEmpty) {
+          curUser = value.docs.first.data();
+        }});
     }
   });
 
@@ -53,7 +61,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      initialRoute:  needLogin ? '/login' : "/",
       title: 'Product App',
       theme: CustomTheme.of(context),
       onGenerateRoute: router.Router.generateRoute,

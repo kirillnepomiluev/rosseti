@@ -13,7 +13,7 @@ class Topics extends StatelessWidget {
       context,
       Serching(),
       "",
-      bottomItemIndex: 3,
+      bottomItemIndex: 0,
       isAppbar: false,
     );
   }
