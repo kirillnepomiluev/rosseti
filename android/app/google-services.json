@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "688879102863",
+    "firebase_url": "https://rosseti-c446a.firebaseio.com",
+    "project_id": "rosseti-c446a",
+    "storage_bucket": "rosseti-c446a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688879102863:android:6847637615273fd75679fa",
+        "android_client_info": {
+          "package_name": "com.onedevfull.rosseti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688879102863-69i36ci5iajeae1a1omp9h971vk2bcmg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcy_wmEonYXwT14BeXvl4rC3-7O_CF-Z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688879102863-69i36ci5iajeae1a1omp9h971vk2bcmg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
