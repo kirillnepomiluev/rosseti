@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 // import 'ui/views/BottobBanner.dart';
 
 Scaffold buildMyScaffold(BuildContext context, Widget body, String title,
-    {int bottomItemIndex = 0, bool isAppbar = true, int indexdrawer = 0, bool isNeedDrawer = true, bool isNeedBottomMenu = true, bool isNeedBottomBar = false, IconButton IconAppBar,}) {
+    {int bottomItemIndex = 0, bool isAppbar = true, int indexdrawer = 0, bool isNeedDrawer = true, bool isNeedBottomMenu = true, bool isNeedBottomBar = false,}) {
   return Scaffold(
       appBar: isAppbar
           ? AppBar(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               title: Text(title, style: Theme.of(context).textTheme.headline6),
               centerTitle: true,
-        actions: [IconAppBar],
             )
           : null,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -38,28 +37,28 @@ Scaffold buildMyScaffold(BuildContext context, Widget body, String title,
               showUnselectedLabels: true,
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: Image.asset('assets/BottomIconNews.png'),
-                  title: Text('Новости'),
+                  icon: Icon(Icons.add),
+                  title: Text('Темы'),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.people),
-                  title: Text('Каталог'),
+                  icon: Icon(Icons.group),
+                  title: Text('Сообщения'),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.add),
-                  title: Text('Мероприятия'),
+                  title: Text('Профиль'),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  title: Text('Кабинет'),
-                ),
+                  icon: Icon(Icons.add),
+                  title: Text('Создать'),
+                )
               ],
               currentIndex: bottomItemIndex,
               onTap: (int index) {
                 String _routeName;
                 switch (index) {
                   case 0:
-                    _routeName = '/';
+                    _routeName = '/topics';
                     break;
                   case 1:
                     _routeName = '/catalogPage';
@@ -67,8 +66,8 @@ Scaffold buildMyScaffold(BuildContext context, Widget body, String title,
                   case 2:
                     _routeName = '/activitys';
                     break;
-                  case 3:
-                    _routeName = '/cabinetPage';
+                    case 2:
+                    _routeName = '/activitys';
                     break;
                 }
                 Navigator.pushNamed(context, _routeName);
