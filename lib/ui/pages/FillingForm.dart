@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rosseti/func/mydb.dart';
+import 'package:rosseti/main.dart';
 import 'package:rosseti/themes/colors.dart';
 import 'package:rosseti/widgets/MyScaffold.dart';
 
@@ -79,15 +80,15 @@ class _FillingFormState extends State<FillingForm> {
                 addNewDoc(context, "suggestions", {
                   "createDate": 1606507384,
                   "branch": "Отде название",
-                  "authors": ["Витя", "Коля", "Вася"],
+                  "authors": [curUser],
+                  "authorlogin" : curUser["login"],
                   "authorsPositions": [
                     "нормальный поц",
-                    "тоже норм",
-                    "подворовывает"
                   ],
                   "name": _controllerNameTrable.text,
                   "category": categories,
                   "scope": "ээээ",
+                  "status" : "на расмотрении этап 1 из 3",
                   "current": "ээээ",
                   "solution": _controllerCharacteristicTrable.text,
                   "effect": _controllereffect.text,
@@ -102,9 +103,7 @@ class _FillingFormState extends State<FillingForm> {
                     {"этап3": "описание3"}
                   ],
                   "bounty": [
-                    {"Витя": "60"},
-                    {"Коля": "20"},
-                    {"Вася": "20"}
+
                   ],
                   "makeEconomy": "true"
                 });

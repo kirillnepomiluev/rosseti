@@ -19,8 +19,13 @@ class Router {
            return MaterialPageRoute(builder: (_) => MainWebPage());
       case '/topics':
            return MaterialPageRoute(builder: (_) => Topics());
+      case '/add':
+           return MaterialPageRoute(builder: (_) => FillingForm());
       case '/topic':
-           return MaterialPageRoute(builder: (_) => Topic());
+        return MaterialPageRoute(builder: (_) => Topic());
+
+      case '/my':
+        return MaterialPageRoute(builder: (_) => Topic());
 
        case '/login':
            return MaterialPageRoute(builder: (_) => LoginPage());

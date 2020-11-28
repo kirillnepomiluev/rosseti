@@ -47,29 +47,22 @@ Scaffold buildMyScaffold(BuildContext context, Widget body, String title,
                       height: 18,
                       width: 18,
                       child:Image.asset('assets/bottomIcon1.png')),
-                  title: Text('Темы'),
+                  title: Text('Обсуждения'),
                 ),
                 BottomNavigationBarItem(
                   icon: Container(
                     height: 18,
                     width: 18,
                     child: Image.asset('assets/bottomIcon2.png'),),
-                  title: Text('Сообщения'),
+                  title: Text('Мои заявки'),
                 ),
                 BottomNavigationBarItem(
                   icon: Container(
                       height: 18,
                       width: 18,
                       child:Image.asset('assets/bottomIcon3.png')),
-                  title: Text('Профиль'),
-                ),
-                BottomNavigationBarItem(
-                  icon: Container(
-                      height: 18,
-                      width: 18,
-                      child:Image.asset('assets/bottomIcon4.png')),
                   title: Text('Создать'),
-                )
+                ),
               ],
               currentIndex: bottomItemIndex,
               onTap: (int index) {
@@ -79,14 +72,12 @@ Scaffold buildMyScaffold(BuildContext context, Widget body, String title,
                     _routeName = '/topics';
                     break;
                   case 1:
-                    _routeName = '/catalogPage';
+                    _routeName = '/my';
                     break;
                   case 2:
-                    _routeName = '/activitys';
+                    _routeName = '/add';
                     break;
-                    case 2:
-                    _routeName = '/activitys';
-                    break;
+
                 }
                 Navigator.pushNamed(context, _routeName);
               }),
