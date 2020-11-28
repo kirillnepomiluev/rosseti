@@ -29,6 +29,7 @@ class Serching extends StatefulWidget {
 
 class _SerchingState extends State<Serching> {
   TextEditingController editingController = TextEditingController();
+  bool checkFavor = false;
 
   List<String> duplicateItems = [
     'эксплуатация подстанций (подстанционного оборудования)',
@@ -124,7 +125,19 @@ class _SerchingState extends State<Serching> {
                 return Column(
                   children: [
                     ListTile(
-                      leading: Icon(Icons.group),
+                      leading: InkWell(
+                          onTap: () {
+                            setState(() {
+                              checkFavor = !checkFavor;
+                            });
+                          },
+                          child: checkFavor ? Container(
+                              height: 18,
+                              width: 18,
+                              child:Image.asset('assets/favoritesFalse.png')) : Container(
+                              height: 18,
+                              width: 18,
+                              child:Image.asset('assets/favoritesTrue.png'))),
                       title: Text('${items[index]}'),
                       onTap: () {
                         Navigator.pushNamed(context, '/topic');
@@ -201,7 +214,7 @@ class _TopicState extends State<Topic> {
             height: 1,
             color: Colors.black,
           ),
-        Expanded(child: topicLinght(context))
+          Expanded(child: topicLinght(context))
         ],
       ),
     );
@@ -220,39 +233,44 @@ class _TopicState extends State<Topic> {
               Container(
                 margin: EdgeInsets.only(bottom: 8),
                 child: Text(
-                    'Без транспорта, света и связи: жители острова Попова возмущены тем, что их бросили после ледяного шторма',style: TextStyle(
-                  color: Color(0xFF486581),
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 20,
-                  fontFamily: "PTRootUI",
-                ),),
+                  'Без транспорта, света и связи: жители острова Попова возмущены тем, что их бросили после ледяного шторма',
+                  style: TextStyle(
+                    color: Color(0xFF486581),
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 20,
+                    fontFamily: "PTRootUI",
+                  ),
+                ),
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 8),
                 child: Row(
                   children: [
-                    Container(height: 24,child: Image.asset('assets/imageee.png')),
+                    Container(
+                        height: 24, child: Image.asset('assets/imageee.png')),
                     Expanded(
                       child: Container(
                         margin: EdgeInsets.only(left: 8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Иванов Иван Иванович',style: TextStyle(
-                              color: Color(0xFF829AB1),
-                              fontWeight: FontWeight.normal,
-                              fontStyle: FontStyle.normal,
-                              fontSize: 16,
-                              fontFamily: "PTRootUI",
-                            )),
-                            Text('Опубликовано 12/12/06',style: TextStyle(
-                              color: Color(0xFF829AB1),
-                              fontWeight: FontWeight.normal,
-                              fontStyle: FontStyle.normal,
-                              fontSize: 12,
-                              fontFamily: "PTRootUI",
-                            )),
+                            Text('Иванов Иван Иванович',
+                                style: TextStyle(
+                                  color: Color(0xFF829AB1),
+                                  fontWeight: FontWeight.normal,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 16,
+                                  fontFamily: "PTRootUI",
+                                )),
+                            Text('Опубликовано 12/12/06',
+                                style: TextStyle(
+                                  color: Color(0xFF829AB1),
+                                  fontWeight: FontWeight.normal,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 12,
+                                  fontFamily: "PTRootUI",
+                                )),
                           ],
                         ),
                       ),
@@ -265,7 +283,8 @@ class _TopicState extends State<Topic> {
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 10),
-                child: Text('Население острова Попова – части Первомайского района Владивостока осталось практически без транспортного сообщения с материком. '),
+                child: Text(
+                    'Население острова Попова – части Первомайского района Владивостока осталось практически без транспортного сообщения с материком. '),
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 10),
@@ -273,17 +292,22 @@ class _TopicState extends State<Topic> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Icon(Icons.comment),
-                    Container(margin: EdgeInsets.only(left: 10,right: 30),
-                    child: Text('12 комментариев'),
+                    Container(
+                      margin: EdgeInsets.only(left: 10, right: 30),
+                      child: Text('12 комментариев'),
                     ),
                     Icon(Icons.arrow_circle_up_sharp),
-                    Container(margin: EdgeInsets.only(left: 10),
+                    Container(
+                      margin: EdgeInsets.only(left: 10),
                       child: Text('В избранное'),
                     )
                   ],
                 ),
               ),
-              Divider(color: Colors.black,height: 1,)
+              Divider(
+                color: Colors.black,
+                height: 1,
+              )
             ],
           ),
         );

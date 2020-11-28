@@ -43,19 +43,31 @@ Scaffold buildMyScaffold(BuildContext context, Widget body, String title,
               showUnselectedLabels: true,
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.add),
+                  icon: Container(
+                      height: 18,
+                      width: 18,
+                      child:Image.asset('assets/bottomIcon1.png')),
                   title: Text('Темы'),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.group),
+                  icon: Container(
+                    height: 18,
+                    width: 18,
+                    child: Image.asset('assets/bottomIcon2.png'),),
                   title: Text('Сообщения'),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.add),
+                  icon: Container(
+                      height: 18,
+                      width: 18,
+                      child:Image.asset('assets/bottomIcon3.png')),
                   title: Text('Профиль'),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.add),
+                  icon: Container(
+                      height: 18,
+                      width: 18,
+                      child:Image.asset('assets/bottomIcon4.png')),
                   title: Text('Создать'),
                 )
               ],
