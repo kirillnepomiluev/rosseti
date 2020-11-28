@@ -56,16 +56,14 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
     );
   }
   Widget buildBody2 (BuildContext context, Map<String, dynamic> data){
-    return Expanded(
-      child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(child: VanColumn(context, data)),
-            Expanded(child: Container())
-          ],
-        ),
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(child: VanColumn(context, data)),
+          Expanded(child: Container())
+        ],
       ),
     );
   }
