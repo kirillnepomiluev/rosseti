@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rosseti/func/mydb.dart';
+import 'package:rosseti/themes/colors.dart';
 import 'package:rosseti/widgets/MyScaffold.dart';
 
 //TODO оформление заявки
@@ -11,26 +12,21 @@ class FillingForm extends StatefulWidget {
 }
 
 class _FillingFormState extends State<FillingForm> {
-
   String categories = '';
 
   List<String> categoriesList = [
-    'эксплуатация подстанций (подстанционного оборудования)',
-    'эксплуатация магистральных сетей',
-    'эксплуатация распределительных сетей',
-    'капитальное строительство, реконструкция, проектирование',
-    'эксплуатация зданий, сооружений, специальной техники',
-    'оперативно-диспетчерское управление',
-    'релейная защита и противоаварийная автоматика',
-    'информационные технологии, системы связи',
-    'эксплуатация распределительных сетей',
-    'эксплуатация распределительных сетей',
-    'мониторинг и диагностика',
+    '  эксплуатация подстанций (подстанционного оборудования)',
+    '  эксплуатация магистральных сетей',
+    '  эксплуатация распределительных сетей',
+    '  капитальное строительство, реконструкция, проектирование',
+    '  эксплуатация зданий, сооружений, специальной техники',
+    '  оперативно-диспетчерское управление',
+    '  релейная защита и противоаварийная автоматика',
+    '  информационные технологии, системы связи',
+    '  эксплуатация распределительных сетей',
+    '  эксплуатация распределительных сетей',
+    '  мониторинг и диагностика',
   ];
-
-
-
-
 
   TextEditingController _controllerNameTrable = TextEditingController();
   TextEditingController _controllerCharacteristicTrable =
@@ -41,9 +37,6 @@ class _FillingFormState extends State<FillingForm> {
   bool valideeffect = true;
   bool _valueCheck = true;
   bool toFindSemantic = false;
-
-
-
 
   bool verifyForms() {
     if (_controllerNameTrable.text.isEmpty) {
@@ -61,7 +54,6 @@ class _FillingFormState extends State<FillingForm> {
     if (_controllereffect.text.isEmpty) {
       setState(() {
         valideeffect = false;
-
       });
       return false;
     }
@@ -72,9 +64,10 @@ class _FillingFormState extends State<FillingForm> {
   Widget build(BuildContext context) {
     return buildMyScaffold(context, Filing(context), "Форма заполнения",
         bottomItemIndex: 3,
-        isAppbar: true,  actions: [
+        isAppbar: true,
+        actions: [
           FlatButton(
-            color: Theme.of(context).accentColor,
+            color: Color(0xFF186FAF),
             onPressed: () {
               if (!toFindSemantic) {
                 if (verifyForms()) {
@@ -83,216 +76,296 @@ class _FillingFormState extends State<FillingForm> {
                   });
                 }
               } else {
-                addNewDoc(context, "suggestions",
-                  {
-                    "createDate": 1606507384,
-                    "branch": "Отде название",
-                    "authors": ["Витя", "Коля", "Вася"],
-                    "authorsPositions": ["нормальный поц", "тоже норм", "подворовывает"],
-                    "name": _controllerNameTrable.text,
-                    "category": categories,
-                    "scope": "ээээ",
-                    "current": "ээээ",
-                    "solution": _controllerCharacteristicTrable.text,
-                    "effect": _controllereffect.text,
-                    "cost": [{
-                      "этап1": "100"
-                    }, {
-                      "этап2": "200"
-                    }, {
-                      "этап3": "300"
-                    }],
-                    "stages": [{
-                      "этап1": "описание1"
-                    }, {
-                      "этап2": "описание2"
-                    }, {
-                      "этап3": "описание3"
-                    }],
-                    "bounty": [{
-                      "Витя": "60"
-                    }, {
-                      "Коля": "20"
-                    }, {
-                      "Вася": "20"
-                    }],
-                    "makeEconomy": "true"
-                  }
-                 );
+                addNewDoc(context, "suggestions", {
+                  "createDate": 1606507384,
+                  "branch": "Отде название",
+                  "authors": ["Витя", "Коля", "Вася"],
+                  "authorsPositions": [
+                    "нормальный поц",
+                    "тоже норм",
+                    "подворовывает"
+                  ],
+                  "name": _controllerNameTrable.text,
+                  "category": categories,
+                  "scope": "ээээ",
+                  "current": "ээээ",
+                  "solution": _controllerCharacteristicTrable.text,
+                  "effect": _controllereffect.text,
+                  "cost": [
+                    {"этап1": "100"},
+                    {"этап2": "200"},
+                    {"этап3": "300"}
+                  ],
+                  "stages": [
+                    {"этап1": "описание1"},
+                    {"этап2": "описание2"},
+                    {"этап3": "описание3"}
+                  ],
+                  "bounty": [
+                    {"Витя": "60"},
+                    {"Коля": "20"},
+                    {"Вася": "20"}
+                  ],
+                  "makeEconomy": "true"
+                });
               }
-          },
-          child: Text("Далее"),)
+            },
+            child: Text("Далее"),
+          )
         ]);
   }
+  List <String> listAfter = [
+    'Егор пупкин',
+  ];
+
+  List <String> nameAfter = [
+    'Василий пупкин',
+    'Василий непупкин',
+    'Василий ине',
+  ];
 
   Widget Filing(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(12),
-      child: toFindSemantic ?
-          Container( padding: EdgeInsets.all(20.0), child: Text( " Проверка на уникальность : Совпадений не найденно"),)
-
-          : SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Автор',
-            ),
-            _After(context),
-            _button(context, buttonText: 'Добавить автора'),
-            _DropDawnList(context),
-            SizedBox(height: 24,),
-            TextFormField(
-              controller: _controllerNameTrable,
-
-              decoration: InputDecoration(
-                 errorText: valideName? "" : "Название не заполненно",
-                  hintText: 'Введите название кратко и по сути',
-                  hintStyle: TextStyle(
-                    color: Color(0xFF829AB1),
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 24,
-                    fontFamily: "PTRootUI",
-                  ),
-                  hintMaxLines: 8),
-            ),
-           SizedBox(height: 24,),
-            _textField(context,
-                text:
-                    'Описание действительного положения с указанием существующих недостатков:',
-                hintText:
-                    'Характеристика проблемы, которую решает рационализаторское предложение, должна описывать недостатки'
-                    ' действующей конструкции изделия, технологии производства, применяемой техники или состава материала',
-                controller: _controllerCharacteristicTrable, errorText: "Описание не заполненно", valide: valideCharacteristic),
-            _textField(context,
-                controller: _controllereffect,
-                text: 'Ожидаемый положительный эффект от использлования:',
-                hintText: 'Указывается информация об ожидаемом техническом, '
-                    'организационном, управленческом или ином положительном эффекте от использования.'
-                    ' Расчет планируемой эффективности применения рационализаторского предложения готовится'
-                    ' согласно Приложению 10 к настоящему Положению и прикладывается к заявлению ',  errorText: "Поле не заполненно", valide: valideeffect),
-            Container(
-              height: 40,
-            ),
-            Text('Необходимые затраты на внедрение'),
-            _button(context, buttonText: 'Добавить статью затрат'),
-            SizedBox(height: 24,),
-            Text('Требуемые сроки на внедрение'),
-            SizedBox(height: 24,),
-            _button(context, buttonText: 'Добавить срок внедрения'),
-            SizedBox(height: 24,),
-            Text(
-                'Настоящим подтверждается действительное авторство и в соответствии с творческим участием каждого из авторов заключается следующее соглашение: '),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
-              child: Text(
-                'Соглашение',
-                style: TextStyle(
-                  color: Color(0xFF486581),
-                  fontWeight: FontWeight.w700,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 16,
-                  fontFamily: "PTRootUI",
-                ),
-              ),
-            ),
-            Text(
-                'о распределении вознаграждения ( % ) за использование рационализаторского предложения'),
-            Text('№ 1  от 22.05.21',
-                style: TextStyle(
-                  color: Color(0xFF486581),
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 14,
-                  fontFamily: "PTRootUI",
-                )),
-            Container(
-                margin: EdgeInsets.symmetric(vertical: 15),
-                child: Text('Распределение вознаграждения')),
-            _gonorar(context),
-            Container(
-              margin: EdgeInsets.only(top: 15),
-              child: Text(
-                  'Прошу расчет размера вознаграждения произвести как за рационализаторское предложение:'),
-            ),
-            _checBox(context),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
-              child: Text(
-                  'Данное предложение не является обьектом патентного права.'),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 15),
-              child: Text(
-                'Прикрепленные файлы',
-                style: TextStyle(
-                  color: Color(0xFF486581),
-                  fontWeight: FontWeight.w700,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 16,
-                  fontFamily: "PTRootUI",
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 20, top: 15),
-              child: InkWell(
-                onTap: () {},
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.attachment_outlined,
-                      size: 35,
-                      color: Color(0xFF486581),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 10),
-                      child: Text('Прикрепить файл'),
-                    )
-                  ],
-                ),
-              ),
+      child: toFindSemantic
+          ? Container(
+              padding: EdgeInsets.all(20.0),
+              child: Text(" Проверка на уникальность : Совпадений не найденно"),
             )
-          ],
-        ),
-      ),
+          : SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 10,bottom: 10),
+                    child: Row(
+                    children: [
+                      Text('Статус'),
+                      Container(
+                        margin: EdgeInsets.only(left: 30),
+                        child: Text('черновик'),
+                      )
+                    ],
+                  ),),
+                  Container(
+                    margin: EdgeInsets.only(top: 10,bottom: 10),
+                    child: Row(
+                      children: [
+                        Text('Создано'),
+                        Container(
+                          margin: EdgeInsets.only(left: 30),
+                          child: Text('12/12/12'),
+                        )
+                      ],
+                    ),),
+                  Container(
+                    margin: EdgeInsets.only(top: 10,bottom: 10),
+                    child: Row(
+                      children: [
+                        Text('Утверждено'),
+                        Container(
+                          margin: EdgeInsets.only(left: 30),
+                          child: Text('-'),
+                        )
+                      ],
+                    ),),
+                  Container(
+                    margin: EdgeInsets.only(top: 5,bottom: 8),
+                    child: Text(
+                      'Автор',
+                    ),
+                  ),
+                  _After(context),
+                  _button(context, buttonText: 'Добавить автора',func: (){
+                    return showDialog(
+                        context: context,
+                        builder: (_) => Container(
+                          width: 200,
+                          height: 300,
+                          child: ListView.builder(
+                            itemCount: nameAfter.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return TextButton(child: Text(nameAfter[index]),onPressed: (){
+                                listAfter.add(nameAfter[index]);
+                                setState(() {
+                                  _After(context);
+                                });
+                                Navigator.pop(context);
+                              },);
+                            },),
+                        ));
+                  }),
+                  _DropDawnList(context),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  TextFormField(
+                    controller: _controllerNameTrable,
+                    decoration: InputDecoration(
+                        errorText: valideName ? "" : "Название не заполненно",
+                        hintText: 'Введите название кратко и по сути',
+                        hintStyle: TextStyle(
+                          color: Color(0xFF829AB1),
+                          fontWeight: FontWeight.w700,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 24,
+                          fontFamily: "PTRootUI",
+                        ),
+                        hintMaxLines: 8),
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  _textField(context,
+                      text:
+                          'Описание действительного положения с указанием существующих недостатков:',
+                      hintText:
+                          'Характеристика проблемы, которую решает рационализаторское предложение, должна описывать недостатки'
+                          ' действующей конструкции изделия, технологии производства, применяемой техники или состава материала',
+                      controller: _controllerCharacteristicTrable,
+                      errorText: "Описание не заполненно",
+                      valide: valideCharacteristic),
+                  _textField(context,
+                      controller: _controllereffect,
+                      text: 'Ожидаемый положительный эффект от использлования:',
+                      hintText:
+                          'Указывается информация об ожидаемом техническом, '
+                          'организационном, управленческом или ином положительном эффекте от использования.'
+                          ' Расчет планируемой эффективности применения рационализаторского предложения готовится'
+                          ' согласно Приложению 10 к настоящему Положению и прикладывается к заявлению ',
+                      errorText: "Поле не заполненно",
+                      valide: valideeffect),
+                  Container(
+                    height: 40,
+                  ),
+                  Text('Необходимые затраты на внедрение'),
+                  _button(context, buttonText: 'Добавить статью затрат'),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Text('Требуемые сроки на внедрение'),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  _button(context, buttonText: 'Добавить срок внедрения'),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Text(
+                      'Настоящим подтверждается действительное авторство и в соответствии с творческим участием каждого из авторов заключается следующее соглашение: '),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 15),
+                    child: Text(
+                      'Соглашение',
+                      style: TextStyle(
+                        color: Color(0xFF486581),
+                        fontWeight: FontWeight.w700,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 16,
+                        fontFamily: "PTRootUI",
+                      ),
+                    ),
+                  ),
+                  Text(
+                      'о распределении вознаграждения ( % ) за использование рационализаторского предложения'),
+                  Text('№ 1  от 22.05.21',
+                      style: TextStyle(
+                        color: Color(0xFF486581),
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 14,
+                        fontFamily: "PTRootUI",
+                      )),
+                  Container(
+                      margin: EdgeInsets.symmetric(vertical: 15),
+                      child: Text('Распределение вознаграждения')),
+                  _gonorar(context),
+                  Container(
+                    margin: EdgeInsets.only(top: 15),
+                    child: Text(
+                        'Прошу расчет размера вознаграждения произвести как за рационализаторское предложение:'),
+                  ),
+                  _checBox(context),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 15),
+                    child: Text(
+                        'Данное предложение не является обьектом патентного права.'),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 15),
+                    child: Text(
+                      'Прикрепленные файлы',
+                      style: TextStyle(
+                        color: Color(0xFF486581),
+                        fontWeight: FontWeight.w700,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 16,
+                        fontFamily: "PTRootUI",
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 20, top: 15),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.attachment_outlined,
+                            size: 35,
+                            color: Color(0xFF486581),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 10),
+                            child: Text('Прикрепить файл'),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
     );
   }
 
   Widget _After(BuildContext context) {
-    return ListView(
+    return ListView.builder(
       shrinkWrap: true,
-      children: [
-        Container(
-          margin: EdgeInsets.only(bottom: 10, top: 10),
-          child: Row(
-            children: [
-              Container(
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                  height: 35,
-                  width: 35,
-                  child: Image.asset(
-                    'assets/imageee.png',
-                    fit: BoxFit.fill,
-                  )),
-              Container(
-                child: Text('Иванов Иван Иванович'),
-                margin: EdgeInsets.only(left: 15),
-              )
-            ],
-          ),
-        )
-      ],
+      itemCount: listAfter.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Column(
+          children: [ Container(
+            margin: EdgeInsets.only(bottom: 10, top: 10),
+            child: Row(
+              children: [
+                Container(
+                    decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(100)),
+                    height: 35,
+                    width: 35,
+                    child: Image.asset(
+                      'assets/imageee.png',
+                      fit: BoxFit.fill,
+                    )),
+                Container(
+                  child: Text(listAfter[index]),
+                  margin: EdgeInsets.only(left: 15),
+                )
+              ],
+            ),
+          )
+          ],
+        );
+    },
     );
   }
 
-  Widget _button(BuildContext context, {String buttonText = ''}) {
+  Widget _button(BuildContext context, {String buttonText = '',Function func}) {
     return Container(
       margin: EdgeInsets.only(bottom: 20, top: 15),
       child: InkWell(
-        onTap: () {},
+        onTap: func,
         child: Row(
           children: [
             Icon(
@@ -310,14 +383,15 @@ class _FillingFormState extends State<FillingForm> {
     );
   }
 
+
   Widget _DropDawnList(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.grey, width: 1)),
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: Color(0xFF9FB3C8), width: 1)),
       height: 35,
       child: DropdownButton(
-          icon: Container(),
+          icon: Container(margin: EdgeInsets.only(right: 10),height: 9,width:16,child: Image.asset('assets/iconArow.png')),
           underline: Container(
             height: 0,
             color: Colors.deepOrangeAccent,
@@ -326,10 +400,11 @@ class _FillingFormState extends State<FillingForm> {
           // iconSize: 12,
           // elevation: 5,
           hint: Text(
-            categories == "" ? 'Выберите категорию' : categories,
+            categories == "" ? '  Выберите категорию' : categories,
             textAlign: TextAlign.center,
             maxLines: 1,
           ),
+          // isDense: true,
           items: categoriesList.map<DropdownMenuItem<String>>((String item) {
             return DropdownMenuItem<String>(
               value: item,
@@ -338,11 +413,12 @@ class _FillingFormState extends State<FillingForm> {
                 child: Text(
                   item,
                   style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontFamily: "OpenSansReg",
-                      fontSize: 13,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold),
+                    color: textLight,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 16,
+                    fontFamily: "PTRootUI",
+                  ),
                 ),
               ),
             );
@@ -356,7 +432,12 @@ class _FillingFormState extends State<FillingForm> {
     );
   }
 
-  Widget _textField(BuildContext context, {String hintText = '', String text = '', TextEditingController controller, bool valide = true, String errorText ="" }) {
+  Widget _textField(BuildContext context,
+      {String hintText = '',
+      String text = '',
+      TextEditingController controller,
+      bool valide = true,
+      String errorText = ""}) {
     return Container(
       margin: EdgeInsets.only(top: 20),
       child: Column(
@@ -369,7 +450,7 @@ class _FillingFormState extends State<FillingForm> {
           TextFormField(
             controller: controller,
             decoration: InputDecoration(
-              errorText: valide? "" : errorText,
+                errorText: valide ? "" : errorText,
                 hintText: hintText,
                 hintStyle: Theme.of(context).textTheme.bodyText1,
                 hintMaxLines: 8),
@@ -419,31 +500,7 @@ class _FillingFormState extends State<FillingForm> {
                 _valueCheck = !_valueCheck;
               });
             },
-            child: Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Theme.of(context).cardColor,
-                  border: Border.all(color: Colors.blue, width: 1)),
-              child: Padding(
-                padding: const EdgeInsets.all(7.0),
-                child: _valueCheck
-                    ? Container(
-                        height: 8,
-                        width: 8,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue,
-                            border: Border.all(color: Colors.blue, width: 1)))
-                    : Container(
-                        height: 8,
-                        width: 8,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Theme.of(context).cardColor,
-                            border: Border.all(
-                                color: Theme.of(context).cardColor, width: 1))),
-              ),
-            ),
+            child: _valueCheck? Icon(Icons.check_box,color: Color(0xFF186FAF),) : Icon(Icons.check_box_outline_blank_sharp,color: Color(0xFF186FAF),)
           ),
           Container(
               margin: EdgeInsets.only(left: 26),
