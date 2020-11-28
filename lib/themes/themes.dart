@@ -62,10 +62,10 @@ class MyThemes {
       subtitle2: TextStyle(color: appbartexstlight, fontSize: 20),
 
       headline4: TextStyle(
-          color: noactivsdrawericonlight,
+          color: titletextmainlight,
           fontSize: 24,
           fontFamily: "PTRootUI",
-          letterSpacing: 1.1),
+          ),
 
 
       // боковое меню  Веделенное текст и цвет иконок

@@ -8,12 +8,27 @@ class FillingForm extends StatefulWidget {
 }
 
 class _FillingFormState extends State<FillingForm> {
+
   String categories = '';
+
   List<String> categoriesList = [
-    'АААААА',
-    'ИИИИИИ',
-    'ВВВВВВ',
+    'эксплуатация подстанций (подстанционного оборудования)',
+    'эксплуатация магистральных сетей',
+    'эксплуатация распределительных сетей',
+    'капитальное строительство, реконструкция, проектирование',
+    'эксплуатация зданий, сооружений, специальной техники',
+    'оперативно-диспетчерское управление',
+    'релейная защита и противоаварийная автоматика',
+    'информационные технологии, системы связи',
+    'эксплуатация распределительных сетей',
+    'эксплуатация распределительных сетей',
+    'мониторинг и диагностика',
   ];
+
+
+
+
+
   TextEditingController _controllerNameTrable = TextEditingController();
   TextEditingController _controllerCharacteristicTrable =
       TextEditingController();

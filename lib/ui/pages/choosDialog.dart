@@ -13,11 +13,14 @@ class ChooseDialog extends StatefulWidget {
   final String title;
   final String url;
   final String name;
+  final List<String> listString;
+  final List<Map<String, dynamic>> listDatas;
   final String addButtomAdress;
   Map<String, Object> data ;
   final String id;
   final List<String> searchParam;
-  Function(Map<String, dynamic> data) function;
+  Function(dynamic data) function;
+  bool multiChoice;
 
   ChooseDialog({
     this.title,
@@ -27,7 +30,7 @@ class ChooseDialog extends StatefulWidget {
     this.data,
     this.function,
     this.addButtomAdress,
-    this.searchParam});
+    this.searchParam, this.multiChoice = false, this.listDatas,this.listString});
 
 
   @override
@@ -46,18 +49,41 @@ class _ChooseDialogState extends State<ChooseDialog> {
 //      'accept': 'application/json',
 //      'authorization': mainAuth
     };
-    get(
-      widget.url,
-    ).then((value) {
-      print(value.statusCode);
-      print(value.body);
-      List<Map<String, dynamic>> listmaps = [];
-      List<dynamic> datalist = json.decode(value.body);
-      datalist.forEach((element) {
-        listmaps.add(element);
+    if (widget.listString != null) {
+      setState(() {
+        _listData = widget.listString.map((e) {
+
+          if (widget.multiChoice) {
+            return {
+              "title": e,
+              "choosen": false
+            };
+          } else {
+            return {
+              "title": e,
+            };
+          }
+        }
+        ).toList();
       });
-      setData(listmaps);
-    });
+    } else if (widget.listDatas != null) {
+      setState(() {
+        _listData = widget.listDatas;
+      });
+    } else {
+      get(
+        widget.url,
+      ).then((value) {
+        print(value.statusCode);
+        print(value.body);
+        List<Map<String, dynamic>> listmaps = [];
+        List<dynamic> datalist = json.decode(value.body);
+        datalist.forEach((element) {
+          listmaps.add(element);
+        });
+        setData(listmaps);
+      });
+    }
     searchTextController.addListener(onChange);
     super.initState();
   }
@@ -79,11 +105,15 @@ class _ChooseDialogState extends State<ChooseDialog> {
         child: Column(
           children: <Widget>[
             Container(
+              padding: EdgeInsets.all(8.0),
               height: 60,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Icon(Icons.search),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(Icons.search),
+                  ),
                   Expanded(
                       child: buildTextForm(searchTextController,
                           hint: "Поиск")),
@@ -96,7 +126,17 @@ class _ChooseDialogState extends State<ChooseDialog> {
                     },
                     child: Icon (Icons.close),
                   ),
-                  myGradientButton(context, btnText: "Добавить",
+                  widget.multiChoice? myGradientButton(context, btnText: "Применить",
+                      funk: () {
+                        if (widget.function == null) {
+
+                        } else {
+                          widget.function(data);
+
+                        }
+
+                        Navigator.of(context).pop();
+                      })    :  myGradientButton(context, btnText: "Добавить",
                       funk: () {
                         currentData = Map();
 
@@ -109,27 +149,39 @@ class _ChooseDialogState extends State<ChooseDialog> {
               child: ListView.builder(
                   itemCount: data.length,
                   itemBuilder: (context, item) {
-                    String aviacompany = data[item]["airline"] != null ? " (${data[item]["airline"]["name"]})" : "";
-                    String code = data[item]["code"] != null ? "${data[item]["code"]}  " : "";
-                    String parkNumber = data[item]["parkNumber"] != null ? " стоянка ${data[item]["parkNumber"]}" : "";
-                    String numberPlane = data[item]["numberPlane"] != null ? " номер самолета ${data[item]["numberPlane"]}" : "";
-                    String modelPlane = data[item]["plane"] !=null ? "  ${data[item]["plane"]["model"]}" : "";
+                    bool choosen = false;
+                    if (data[item]['choosen'] != null) {
+                      choosen = data[item]['choosen'];
+                    }
                     return Container(
                       margin: EdgeInsets.all(8.0),
                       child:
                           InkWell(
                               hoverColor: Colors.black12,
-                              child: Text(code + data[item][widget.name].toString() + aviacompany + parkNumber + numberPlane + modelPlane),
+                              child: widget.multiChoice?  Row(
+                                children: [
+                                  Checkbox(value: choosen, onChanged: (bool value) {
+                                    setState(() {
+                                      data[item]['choosen'] = !choosen;
+                                    });
+                                  },
+                                  ),
+                                  Text(data[item][widget.name].toString())
+                                ],
+                              )   :   Text(data[item][widget.name].toString()),
                             onTap: () {
-                              if (widget.function == null) {
-                                Map<String, Object>  newdata = widget.data;
-                                newdata['nameEmployer']= data[item][widget.name].toString();
-                                newdata['idEmployer']= data[item][widget.id];
-                                linkCustomerToTask(newdata);
-                              } else {
-                                widget.function( data[item]);
-                                Navigator.of(context).pop();
-                              }
+                                if (!widget.multiChoice) {
+                                  if (widget.function == null) {
+                                  } else {
+                                    widget.function(data[item]);
+                                    Navigator.of(context).pop();
+                                  }
+                                } else {
+                                  setState(() {
+                                    data[item]['choosen'] = !choosen;
+                                  });
+
+                                }
                             },
                           ),
                     );

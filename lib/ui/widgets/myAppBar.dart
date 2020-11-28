@@ -33,8 +33,8 @@ class MyAppBarState extends State<MyAppBar> {
             Expanded(
               child: (currentNumber == 1)
                   ? myGradientButton(context,
-                      btnText: "Задачи",
-                      icon: Icon(Icons.play_circle_outline,
+                      btnText: "Предложения",
+                      icon: Icon(Icons.list_alt,
                           color: Theme.of(context).textTheme.headline5.color),
                       radiusCorner: 0.0, funk: () {
                       setState(() {
@@ -43,9 +43,9 @@ class MyAppBarState extends State<MyAppBar> {
                       currentData = Map();
                     })
                   : myGradientButtonWhite(context,
-                      icon: Icon(Icons.play_circle_filled,
+                      icon: Icon(Icons.list_alt,
                           color: Theme.of(context).textTheme.headline6.color),
-                      btnText: "Задачи",
+                      btnText: "Предложения",
                       radiusCorner: 0.0, funk: () {
                       setState(() {
                         currentNumber = 1;
@@ -56,8 +56,8 @@ class MyAppBarState extends State<MyAppBar> {
             Expanded(
               child: (currentNumber == 4)
                   ? myGradientButton(context,
-                      btnText: "Сотрудники",
-                      icon: Icon(Icons.group,
+                      btnText: "Мои предожения",
+                      icon: Icon(Icons.work_rounded,
                           color: Theme.of(context).textTheme.headline5.color),
                       radiusCorner: 0.0, funk: () {
                       setState(() {
@@ -66,8 +66,8 @@ class MyAppBarState extends State<MyAppBar> {
                       currentData = Map();
                     })
                   : myGradientButtonWhite(context,
-                      btnText: "Сотрудники",
-                      icon: Icon(Icons.group,
+                      btnText: "Мои предожения",
+                      icon: Icon(Icons.work_rounded,
                           color: Theme.of(context).textTheme.headline6.color),
                       radiusCorner: 0.0, funk: () {
                       setState(() {
@@ -79,8 +79,8 @@ class MyAppBarState extends State<MyAppBar> {
             Expanded(
               child: (currentNumber == 5)
                   ? myGradientButton(context,
-                      btnText: "ТЗА",
-                      icon: Icon(Icons.local_shipping,
+                      btnText: "Обсуждения",
+                      icon: Icon(Icons.messenger,
                           color: Theme.of(context).textTheme.headline5.color),
                       radiusCorner: 0.0, funk: () {
                       setState(() {
@@ -89,8 +89,8 @@ class MyAppBarState extends State<MyAppBar> {
                       currentData = Map();
                     })
                   : myGradientButtonWhite(context,
-                      btnText: "ТЗА",
-                      icon: Icon(Icons.local_shipping,
+                      btnText: "Обсуждения",
+                      icon: Icon(Icons.messenger,
                           color: Theme.of(context).textTheme.headline6.color),
                       radiusCorner: 0.0, funk: () {
                       setState(() {
@@ -145,7 +145,7 @@ class MyAppBarState extends State<MyAppBar> {
                       currentData = Map();
                     }),
             ),
-            Expanded(flex: 2, child: myLogo(context))
+            Expanded(flex: 1, child: myLogo(context))
           ],
         ),
       ),

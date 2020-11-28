@@ -6,6 +6,9 @@ const mainbackgroundlight2 = const Color(0xFFEAEAEA); //основной зад�
 const mainbackgroundlight = const Color(0xFFE5E5E5); //основной задний фон бади и апп бар
 const uplinelight = const Color(0xFFE2E2E2); //самая верхняя полоска
 const bluesimbolslight = const Color(0xFF2C98F0); //синий символ В вверху и число рядом с ним
+
+const titletextmainlight = const Color(0xFF334E68); //текст заголовков
+
 const appbartexstlight = const Color(0xFF141414); //оттенок черного текст и гамбургер в апп баре
 const boxlight = const Color(0xFFFFFFFF); //все боксы и контейнеры чисто белые
 const activbottombariconlight = const Color(0xFF2C98F0); //активная иконка нижнего бара и текст под ней - синий оттенок
