@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:rosseti/ui/pages/FillingForm.dart';
 
 import '../../main.dart';
 import 'RaisedGradientButton.dart';
@@ -133,6 +134,18 @@ class MyAppBarState extends State<MyAppBar> {
                         currentNumber = 6;
                       });
                       currentData = Map();
+                      showDialog(
+                        child: Dialog(
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * 0.8,
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            child: FillingForm(),
+                          ),
+                        ),
+                        context: context,
+                      );
+
+
                     })
                   : myGradientButtonWhite(context,
                       btnText: "Добавить",
@@ -143,6 +156,16 @@ class MyAppBarState extends State<MyAppBar> {
                         currentNumber = 6;
                       });
                       currentData = Map();
+                      showDialog(
+                        child: Dialog(
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * 0.8,
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            child: FillingForm(),
+                          ),
+                        ),
+                        context: context,
+                      );
                     }),
             ),
             Expanded(flex: 1, child: myLogo(context))

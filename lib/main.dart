@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:rosseti/blocs.dart';
@@ -15,6 +17,8 @@ String userName = "Иванов Ф.Д.";
 
 bool isViewTypeBig = true;
 TasksBloc currentBloc;
+FirebaseApp app;
+FirebaseFirestore store = FirebaseFirestore.instance;
 
 
 
@@ -23,6 +27,7 @@ Map<String, dynamic> currentData = Map();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  app = await   Firebase.initializeApp();
 
   await SharedPreferences.getInstance().then((value) {
     prefs = value;

@@ -1,17 +1,23 @@
 // import 'package:edunano/pre/my_flutter_app_icons.dart' as custicon;
+import 'package:flutter/foundation.dart';
 import 'package:rosseti/ui/views/mainDrawer.dart';
 import 'package:flutter/material.dart';
 
 // import 'ui/views/BottobBanner.dart';
 
 Scaffold buildMyScaffold(BuildContext context, Widget body, String title,
-    {int bottomItemIndex = 0, bool isAppbar = true, int indexdrawer = 0, bool isNeedDrawer = true, bool isNeedBottomMenu = true, bool isNeedBottomBar = false,}) {
+    {int bottomItemIndex = 0, bool isAppbar = true, int indexdrawer = 0, bool isNeedDrawer = true, bool isNeedBottomMenu = true, bool isNeedBottomBar = false, List<Widget> actions}) {
+  if (kIsWeb) {
+    isNeedBottomMenu = false;
+    isNeedDrawer = false;
+  }
   return Scaffold(
       appBar: isAppbar
           ? AppBar(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               title: Text(title, style: Theme.of(context).textTheme.headline6),
               centerTitle: true,
+               actions: actions,
             )
           : null,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,

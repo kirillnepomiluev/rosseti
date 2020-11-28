@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rosseti/func/mydb.dart';
 import 'package:rosseti/widgets/MyScaffold.dart';
 
 //TODO оформление заявки
@@ -35,19 +36,102 @@ class _FillingFormState extends State<FillingForm> {
   TextEditingController _controllerCharacteristicTrable =
       TextEditingController();
   TextEditingController _controllereffect = TextEditingController();
-  bool _valueCheck = false;
+  bool valideName = true;
+  bool valideCharacteristic = true;
+  bool valideeffect = true;
+  bool _valueCheck = true;
+  bool toFindSemantic = false;
+
+
+
+
+  bool verifyForms() {
+    if (_controllerNameTrable.text.isEmpty) {
+      setState(() {
+        valideName = false;
+      });
+      return false;
+    }
+    if (_controllerCharacteristicTrable.text.isEmpty) {
+      setState(() {
+        valideCharacteristic = false;
+      });
+      return false;
+    }
+    if (_controllereffect.text.isEmpty) {
+      setState(() {
+        valideeffect = false;
+
+      });
+      return false;
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
     return buildMyScaffold(context, Filing(context), "Форма заполнения",
         bottomItemIndex: 3,
-        isAppbar: true,);
+        isAppbar: true,  actions: [
+          FlatButton(
+            color: Theme.of(context).accentColor,
+            onPressed: () {
+              if (!toFindSemantic) {
+                if (verifyForms()) {
+                  setState(() {
+                    toFindSemantic = true;
+                  });
+                }
+              } else {
+                addNewDoc(context, "suggestions",
+                  {
+                    "createDate": 1606507384,
+                    "branch": "Отде название",
+                    "authors": ["Витя", "Коля", "Вася"],
+                    "authorsPositions": ["нормальный поц", "тоже норм", "подворовывает"],
+                    "name": _controllerNameTrable.text,
+                    "category": categories,
+                    "scope": "ээээ",
+                    "current": "ээээ",
+                    "solution": _controllerCharacteristicTrable.text,
+                    "effect": _controllereffect.text,
+                    "cost": [{
+                      "этап1": "100"
+                    }, {
+                      "этап2": "200"
+                    }, {
+                      "этап3": "300"
+                    }],
+                    "stages": [{
+                      "этап1": "описание1"
+                    }, {
+                      "этап2": "описание2"
+                    }, {
+                      "этап3": "описание3"
+                    }],
+                    "bounty": [{
+                      "Витя": "60"
+                    }, {
+                      "Коля": "20"
+                    }, {
+                      "Вася": "20"
+                    }],
+                    "makeEconomy": "true"
+                  }
+                 );
+              }
+          },
+          child: Text("Далее"),)
+        ]);
   }
 
   Widget Filing(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(12),
-      child: SingleChildScrollView(
+      child: toFindSemantic ?
+          Container( padding: EdgeInsets.all(20.0), child: Text( " Проверка на уникальность : Совпадений не найденно"),)
+
+          : SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -57,9 +141,12 @@ class _FillingFormState extends State<FillingForm> {
             _After(context),
             _button(context, buttonText: 'Добавить автора'),
             _DropDawnList(context),
+            SizedBox(height: 24,),
             TextFormField(
               controller: _controllerNameTrable,
+
               decoration: InputDecoration(
+                 errorText: valideName? "" : "Название не заполненно",
                   hintText: 'Введите название кратко и по сути',
                   hintStyle: TextStyle(
                     color: Color(0xFF829AB1),
@@ -70,27 +157,31 @@ class _FillingFormState extends State<FillingForm> {
                   ),
                   hintMaxLines: 8),
             ),
+           SizedBox(height: 24,),
             _textField(context,
                 text:
                     'Описание действительного положения с указанием существующих недостатков:',
                 hintText:
                     'Характеристика проблемы, которую решает рационализаторское предложение, должна описывать недостатки'
                     ' действующей конструкции изделия, технологии производства, применяемой техники или состава материала',
-                controller: _controllerCharacteristicTrable),
+                controller: _controllerCharacteristicTrable, errorText: "Описание не заполненно", valide: valideCharacteristic),
             _textField(context,
                 controller: _controllereffect,
                 text: 'Ожидаемый положительный эффект от использлования:',
                 hintText: 'Указывается информация об ожидаемом техническом, '
                     'организационном, управленческом или ином положительном эффекте от использования.'
                     ' Расчет планируемой эффективности применения рационализаторского предложения готовится'
-                    ' согласно Приложению 10 к настоящему Положению и прикладывается к заявлению '),
+                    ' согласно Приложению 10 к настоящему Положению и прикладывается к заявлению ',  errorText: "Поле не заполненно", valide: valideeffect),
             Container(
               height: 40,
             ),
             Text('Необходимые затраты на внедрение'),
             _button(context, buttonText: 'Добавить статью затрат'),
+            SizedBox(height: 24,),
             Text('Требуемые сроки на внедрение'),
+            SizedBox(height: 24,),
             _button(context, buttonText: 'Добавить срок внедрения'),
+            SizedBox(height: 24,),
             Text(
                 'Настоящим подтверждается действительное авторство и в соответствии с творческим участием каждого из авторов заключается следующее соглашение: '),
             Container(
@@ -235,7 +326,7 @@ class _FillingFormState extends State<FillingForm> {
           // iconSize: 12,
           // elevation: 5,
           hint: Text(
-            categories == "" ? 'Выберите категорию' : categoriesList,
+            categories == "" ? 'Выберите категорию' : categories,
             textAlign: TextAlign.center,
             maxLines: 1,
           ),
@@ -258,14 +349,14 @@ class _FillingFormState extends State<FillingForm> {
           }).toList(),
           onChanged: (value) {
             setState(() {
-              categoriesList = value;
+              categories = value;
             });
             // categoriesList = value;
           }),
     );
   }
 
-  Widget _textField(BuildContext context, {String hintText = '', String text = '', TextEditingController controller}) {
+  Widget _textField(BuildContext context, {String hintText = '', String text = '', TextEditingController controller, bool valide = true, String errorText ="" }) {
     return Container(
       margin: EdgeInsets.only(top: 20),
       child: Column(
@@ -278,6 +369,7 @@ class _FillingFormState extends State<FillingForm> {
           TextFormField(
             controller: controller,
             decoration: InputDecoration(
+              errorText: valide? "" : errorText,
                 hintText: hintText,
                 hintStyle: Theme.of(context).textTheme.bodyText1,
                 hintMaxLines: 8),
