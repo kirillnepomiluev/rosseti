@@ -12,9 +12,9 @@ class MyThemes {
 
     primaryColor: mainbackgroundlight,
     primaryColorDark: mainbackgroundlight,
-    backgroundColor: mainbackgroundlight,
+    backgroundColor: boxlight,
     accentColor: activbottombariconlight,
-    scaffoldBackgroundColor: mainbackgroundlight,
+    scaffoldBackgroundColor: boxlight,
     dialogBackgroundColor: Colors.orange,
     brightness: Brightness.light,
     cardColor: boxlight,

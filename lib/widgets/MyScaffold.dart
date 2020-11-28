@@ -12,6 +12,7 @@ Scaffold buildMyScaffold(BuildContext context, Widget body, String title,
     isNeedDrawer = false;
   }
   return Scaffold(
+
       appBar: isAppbar
           ? AppBar(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
