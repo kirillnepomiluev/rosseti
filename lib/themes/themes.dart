@@ -26,13 +26,13 @@ class MyThemes {
       caption: TextStyle(
           color: redSelected,
           fontFamily: "PTRootUI",
-          fontSize: 16 ),
+          fontSize: 18 ),
 
       bodyText1: TextStyle(
         color: textDisable,
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
-        fontSize: 14,
+        fontSize: 16,
         fontFamily: "PTRootUI",
       ),
       // Стиль текста по умолчанию для материала
@@ -40,7 +40,7 @@ class MyThemes {
         color: textLight,
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
-        fontSize: 14,
+        fontSize: 16,
         fontFamily: "PTRootUI",
       ),
 
