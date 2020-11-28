@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rosseti/themes/colors.dart';
 import 'package:rosseti/ui/pages/choosDialog.dart';
 import 'package:rosseti/ui/widgets/myAppBar.dart';
 
@@ -55,28 +57,111 @@ class _MainWebPageState extends State<MainWebPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar ( title: MyAppBar(title: "Главная",),),
-      body: Container(
-        padding:  EdgeInsets.symmetric(vertical: 32, horizontal: 48),
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.all(10.0),
-              child: Text("Список предложений", style: Theme.of(context).textTheme.headline4,),
+      // appBar:  AppBar ( title: MyAppBar(title: "Главная",),),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            color: Color(0xFF186FAF),
+            height: 56,
+            child: Row(
+              children: [
+                Container(
+                  height: 32,
+                  width: 107,
+                  margin: EdgeInsets.only(right: 40,left: 48),
+                  child: Image.asset('assets/logo2rosseti.png',color: Colors.white,),
+                ),
+                Ink(
+                  child: Container(
+                    margin: EdgeInsets.only(right: 32,left: 0),
+                    child: Text('Предложения',style: TextStyle(
+                      color: textWight,
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14,
+                      fontFamily: "PTRootUI",
+                    ),),
+                  ),
+                ),
+                Ink(
+                  child: Container(
+                    margin: EdgeInsets.only(right: 32,left: 0),
+                    child: Text('Мои предложения',style: TextStyle(
+                      color: textWight,
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14,
+                      fontFamily: "PTRootUI",
+                    )),
+                  ),
+                ),
+                Ink(
+                  child: Container(
+                    margin: EdgeInsets.only(right: 32,left: 0),
+                    child: Text('Обсуждения',style: TextStyle(
+                      color: textWight,
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14,
+                      fontFamily: "PTRootUI",
+                    )),
+                  ),
+                ),
+                Ink(
+                  child: Container(
+                    margin: EdgeInsets.only(right: 32,left: 0),
+                    child: Text('Справочники',style: TextStyle(
+                      color: textWight,
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14,
+                      fontFamily: "PTRootUI",
+                    )),
+                  ),
+                ),
+                Ink(
+                  child: Container(
+                    margin: EdgeInsets.only(right: 32,left: 0),
+                    child: Text('Добавить',style: TextStyle(
+                      color: textWight,
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14,
+                      fontFamily: "PTRootUI",
+                    )),
+                  ),
+                )
+
+              ],
             ),
-            filtersRow(),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 40,top: 30),
+            // padding:  EdgeInsets.symmetric(vertical: 32, horizontal: 48),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  // padding: EdgeInsets.all(10.0),
+                  child: Text("Список предложений", style: Theme.of(context).textTheme.headline4,),
+                ),
+                filtersRow(),
 
 
-          ],
-        )
-        ,)
+              ],
+            )
+            ,),
+        ],
+      )
 
     );
   }
 
   Widget filtersRow() {
     return Container(
-      width: MediaQuery.of(context).size.width*0.7,
+      width: MediaQuery.of(context).size.width*0.5,
       height: 32,
       child: Row(
        children: [
@@ -145,6 +230,19 @@ class _MainWebPageState extends State<MainWebPage> {
     ),);
   }
 
+  Widget bigRow(BuildContext context){
+    return Container(
+      margin: EdgeInsets.only(left: 40),
+      child: Row(
+        children: [
+          Column(
+            children: [],
+          )
+        ],
+      ),
+    );
+  }
+
 
 
 }
@@ -161,10 +259,7 @@ Widget dropDawnList(BuildContext context, {String title="", List<String> list, S
         height: 35,
         child: InkWell(child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(value, style: Theme.of(context).textTheme.bodyText2,),
-            ),
+            Container(margin: EdgeInsets.only(right: 10) ,child: Text(value, style: Theme.of(context).textTheme.bodyText2,)),
             Icon (Icons.keyboard_arrow_down_outlined)
           ],
         ), onTap: () {
