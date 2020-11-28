@@ -39,7 +39,9 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
           return Container(padding: EdgeInsets.all(24), child: ListView(
             shrinkWrap: true,
             children: [
-            Container( padding:  EdgeInsets.all(20), child: buildBody2(context ,data ),),
+            Container( padding:  EdgeInsets.all(20), child:
+                kIsWeb?
+            buildBody2(context ,data ) :VanColumn(context, data) ,),
 
 
           ],) , );
@@ -88,6 +90,7 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
               ),
             ),
             Row(children: [
+              (data["authorlogin"] == curUser["login"]) ?
               InkWell(child: Container(
                 margin: EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
@@ -105,14 +108,14 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
                     Text('Редактирование')
                   ],
                 ),
-              ),),
+              ),) : Container(),
               InkWell(child: Container(
                 margin: EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
                     color: Color(0xFFF0F4F8)
                 ),
                 height: 32,
-                width: 215,
+                width: kIsWeb? 215 : 130,
                 child: Row(
                   children: [
                     Container(
@@ -120,10 +123,12 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
                         height: 14,
                         width: 14,
                         child: Image.asset('assets/IconMessage.png')),
-                    Text('Написать комментарий')
+                    Text(kIsWeb? 'Написать комментарий' :"Написать")
                   ],
                 ),
-              ),),InkWell(child: Container(
+              ),),
+              ( curUser["role"] == "expert" && kIsWeb) ?
+              InkWell(child: Container(
                 margin: EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
                   color: Color(0xFFF0F4F8)
@@ -140,20 +145,51 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
                     Text('Рассмотреть')
                   ],
                 ),
-              ),)
+              ),) : Container()
             ],),
+            ( (curUser["role"] == "expert" )&& !kIsWeb) ?
+            InkWell(child: Container(
+              margin: EdgeInsets.only(right: 10),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
+                  color: Color(0xFFF0F4F8)
+              ),
+              height: 32,
+              width: 170,
+              child: Row(
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(right: 10,left: 12),
+                      height: 14,
+                      width: 14,
+                      child: Image.asset('assets/starIcon.png')),
+                  Text('Рассмотреть')
+                ],
+              ),
+            ),) : Container(),
             Container(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(flex: 2,child: Container(margin: EdgeInsets.only(left: 15),child: ColumnName(context,data))),
+                  Expanded(flex: 2,child: Container(margin: EdgeInsets.only(left: kIsWeb? 15 : 0),child: ColumnName(context,data))),
                   Expanded(flex: 2,child: ColumnTwo(context,data)),
-                  Expanded(flex: 2,child: ColumnThree(context,data)),
-                  Expanded(flex: 2,child: ColumnFo(context,data))
+                kIsWeb?  Expanded(flex: 2,child: ColumnThree(context,data)) : Container(),
+                  kIsWeb?    Expanded(flex: 2,child: ColumnFo(context,data))  : Container()
                 ],
               ),
-            )
+            ),
+            kIsWeb? Container() :
+            Container(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                   Expanded(flex: 2,child: ColumnThree(context,data)) ,
+                 Expanded(flex: 2,child: ColumnFo(context,data))
+                ],
+              ),
+            ),
           ],
       ),
     );
