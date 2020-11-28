@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rosseti/themes/colors.dart';
+import 'package:rosseti/ui/pages/FillingForm.dart';
 import 'package:rosseti/ui/pages/choosDialog.dart';
 import 'package:rosseti/ui/widgets/myAppBar.dart';
 
@@ -120,7 +121,19 @@ class _MainWebPageState extends State<MainWebPage> {
                     )),
                   ),
                 ),
-                Ink(
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                      child: Dialog(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.8,
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          child: FillingForm(),
+                        ),
+                      ),
+                      context: context,
+                    );
+                  },
                   child: Container(
                     margin: EdgeInsets.only(right: 32,left: 0),
                     child: Text('Добавить',style: TextStyle(
