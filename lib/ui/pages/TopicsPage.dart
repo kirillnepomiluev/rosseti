@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rosseti/themes/colors.dart';
 import 'package:rosseti/widgets/MyScaffold.dart';
 
 //TODO 1-экран тем 2-экран конкретной темы
@@ -89,7 +90,7 @@ class _SerchingState extends State<Serching> {
                 Expanded(
                   child: Container(
                     height: 64,
-                    padding: EdgeInsets.fromLTRB(12,12,8,12),
+                    padding: EdgeInsets.fromLTRB(12, 12, 8, 12),
                     child: TextField(
                       onChanged: (value) {
                         filterSearchResults(value);
@@ -100,7 +101,8 @@ class _SerchingState extends State<Serching> {
                           hintText: "Поиск",
                           prefixIcon: Icon(Icons.search),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5.0)))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5.0)))),
                     ),
                   ),
                 ),
@@ -124,9 +126,14 @@ class _SerchingState extends State<Serching> {
                     ListTile(
                       leading: Icon(Icons.group),
                       title: Text('${items[index]}'),
-                      onTap: (){ Navigator.pushNamed(context, '/topic'); },
+                      onTap: () {
+                        Navigator.pushNamed(context, '/topic');
+                      },
                     ),
-                    Divider(height: 1,color: Colors.black,)
+                    Divider(
+                      height: 1,
+                      color: Colors.black,
+                    )
                   ],
                 );
               },
@@ -138,7 +145,7 @@ class _SerchingState extends State<Serching> {
   }
 }
 
-class Topic extends StatefulWidget{
+class Topic extends StatefulWidget {
   @override
   _TopicState createState() => _TopicState();
 }
@@ -154,7 +161,8 @@ class _TopicState extends State<Topic> {
       isAppbar: false,
     );
   }
-  Widget toptopic (BuildContext context){
+
+  Widget toptopic(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(15),
       child: Column(
@@ -164,60 +172,122 @@ class _TopicState extends State<Topic> {
             height: 64,
             child: Row(
               children: [
-                BackButton(onPressed:(){ Navigator.pop(context);}),
-                Expanded(child: Text('эксплуатация подстанций (подстанционного оборудования);')),
+                BackButton(onPressed: () {
+                  Navigator.pop(context);
+                }),
+                Expanded(
+                    child: Text(
+                        'эксплуатация подстанций (подстанционного оборудования);')),
                 Icon(Icons.search)
               ],
             ),
           ),
           InkWell(
-            onTap: (){},
+            onTap: () {},
             child: Container(
               height: 60,
               child: Row(
                 children: [
                   Icon(Icons.add),
-                  Container(margin: EdgeInsets.only(left: 10),
-                  child: Text('Создать тему'),
+                  Container(
+                    margin: EdgeInsets.only(left: 10),
+                    child: Text('Создать тему'),
                   )
                 ],
               ),
             ),
           ),
-          Divider(height: 1,color: Colors.black,)
-
+          Divider(
+            height: 1,
+            color: Colors.black,
+          ),
+        Expanded(child: topicLinght(context))
         ],
       ),
     );
   }
-  Widget topicLinght (BuildContext context){
+
+  Widget topicLinght(BuildContext context) {
     return ListView.builder(
+      // scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemCount: 3,
       itemBuilder: (BuildContext context, int index) {
-      return Container(
-        child: Column(
-          children: [
-            Text('Без транспорта, света и связи: жители острова Попова возмущены тем, что их бросили после ледяного шторма'),
-            Row(
-              children: [
-                Image.asset('asses/imageee.png'),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(left: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Иванов Иван Иванович'),
-                        Text('Опубликовано 12/12/06'),
-                      ],
+        return Container(
+          margin: EdgeInsets.only(bottom: 12),
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 8),
+                child: Text(
+                    'Без транспорта, света и связи: жители острова Попова возмущены тем, что их бросили после ледяного шторма',style: TextStyle(
+                  color: Color(0xFF486581),
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.normal,
+                  fontSize: 20,
+                  fontFamily: "PTRootUI",
+                ),),
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 8),
+                child: Row(
+                  children: [
+                    Container(height: 24,child: Image.asset('assets/imageee.png')),
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.only(left: 8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Иванов Иван Иванович',style: TextStyle(
+                              color: Color(0xFF829AB1),
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.normal,
+                              fontSize: 16,
+                              fontFamily: "PTRootUI",
+                            )),
+                            Text('Опубликовано 12/12/06',style: TextStyle(
+                              color: Color(0xFF829AB1),
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.normal,
+                              fontSize: 12,
+                              fontFamily: "PTRootUI",
+                            )),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    DropdownButton(
+                      onChanged: (value) {},
+                    )
+                  ],
                 ),
-                DropdownButton(onChanged: (value) {  },)
-              ],
-            )
-          ],
-        ),
-      );
-    },);
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 10),
+                child: Text('Население острова Попова – части Первомайского района Владивостока осталось практически без транспортного сообщения с материком. '),
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(Icons.comment),
+                    Container(margin: EdgeInsets.only(left: 10,right: 30),
+                    child: Text('12 комментариев'),
+                    ),
+                    Icon(Icons.arrow_circle_up_sharp),
+                    Container(margin: EdgeInsets.only(left: 10),
+                      child: Text('В избранное'),
+                    )
+                  ],
+                ),
+              ),
+              Divider(color: Colors.black,height: 1,)
+            ],
+          ),
+        );
+      },
+    );
   }
 }

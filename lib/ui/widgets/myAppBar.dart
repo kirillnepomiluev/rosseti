@@ -10,13 +10,13 @@ class MyAppBar extends StatefulWidget {
   final String title;
 
   MyAppBar({Key key, this.title}) : super(key: key);
-  var state = MyAppBarState();
+  var state = MyAppBar2State();
 
   @override
-  MyAppBarState createState() => state;
+  MyAppBar2State createState() => state;
 }
 
-class MyAppBarState extends State<MyAppBar> {
+class MyAppBar2State extends State<MyAppBar> {
   int currentNumber = 1;
 
   @override
@@ -222,3 +222,8 @@ Widget myLogo(BuildContext context) {
                 alignment: AlignmentDirectional.center))),
   );
 }
+
+
+
+
+
