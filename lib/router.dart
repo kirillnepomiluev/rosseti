@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:rosseti/ui/pages/FillingForm.dart';
 import 'package:rosseti/ui/pages/TopicsPage.dart';
+import 'package:rosseti/ui/pages/loginPage.dart';
 import 'package:rosseti/ui/pages/mainWebPage.dart';
 
 
@@ -20,6 +21,9 @@ class Router {
            return MaterialPageRoute(builder: (_) => Topics());
       case '/topic':
            return MaterialPageRoute(builder: (_) => Topic());
+
+       case '/login':
+           return MaterialPageRoute(builder: (_) => LoginPage());
 
 
 

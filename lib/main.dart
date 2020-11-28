@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/login',
       title: 'Product App',
       theme: CustomTheme.of(context),
       onGenerateRoute: router.Router.generateRoute,
