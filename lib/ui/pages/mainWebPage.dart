@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:rosseti/main.dart';
 import 'package:rosseti/themes/colors.dart';
 import 'package:rosseti/ui/pages/FillingForm.dart';
+import 'package:rosseti/ui/pages/SuggetioninfoPage.dart';
 import 'package:rosseti/ui/pages/choosDialog.dart';
 import 'package:rosseti/ui/widgets/myAppBar.dart';
+import 'package:rosseti/widgets/MyScaffold.dart';
 
 import '../../data.dart';
 
@@ -53,11 +58,22 @@ class _MainWebPageState extends State<MainWebPage> {
     'ИИИИИИ',
     'ВВВВВВ',
   ];
+  String suggetionID;
 
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    if (!kIsWeb) {
+      return buildMyScaffold(context, suggestionsList(), "список предложений", actions:[           FlatButton(
+        color: Theme.of(context).accentColor,
+        onPressed: () {
+         Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) { return FillingForm();  }));
+        },
+        child: Text("Добавить"),)
+      ]);
+    }
+
+    return   Scaffold(
       // appBar:  AppBar ( title: MyAppBar(title: "Главная",),),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,7 +177,7 @@ class _MainWebPageState extends State<MainWebPage> {
                   child: Text("Список предложений", style: Theme.of(context).textTheme.headline4,),
                 ),
                 filtersRow(),
-
+                   bigRow(context)
 
               ],
             )
@@ -248,12 +264,82 @@ class _MainWebPageState extends State<MainWebPage> {
       margin: EdgeInsets.only(left: 40),
       child: Row(
         children: [
-          Column(
-            children: [],
-          )
+          Expanded(child: suggestionsList(),) ,
+          Expanded(child:Suggetioninfo(suggetionId: suggetionID,), flex:3),
+
         ],
       ),
     );
+  }
+
+  suggestionsList() {
+    return Container(
+      child:           StreamBuilder(
+        stream: store.collection("suggestions").snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasData) {
+            QuerySnapshot querySnapshot = snapshot.data;
+            return Container(
+              child:  ListView.builder(
+                shrinkWrap: true,
+                itemCount: querySnapshot.docs.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Map<String, dynamic> data = querySnapshot.docs[index].data();
+                  String id =  querySnapshot.docs[index].id;
+                  return Container(
+                    height: 90,
+                    child: InkWell(
+                      onTap: () {
+                        if (kIsWeb) {
+                          setState(() {
+                            suggetionID = id;
+                          });
+                        }
+                         else {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) { return Suggetioninfo(suggetionId: id); }));
+                        }
+                      },
+                      child: Column (
+                        children: [
+                          Expanded(flex:1,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(data["name"] ),
+                            ),
+                          ),
+                          Expanded( flex:2,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(data["solution"] ),
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ),
+                  );
+
+                },),
+
+            );
+
+
+
+
+
+          } else
+            if (snapshot.hasError) {
+              print(" firebaseError. " +snapshot.error.toString());
+            return Container (child: Text("Ошибка"),);
+
+          }
+          return Container(child: CircularProgressIndicator(), );
+        },)
+
+      ,);
+
+
+
   }
 
 

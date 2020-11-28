@@ -15,7 +15,7 @@ class Router {
         if (kIsWeb) {
            return MaterialPageRoute(builder: (_) => MainWebPage());
          }
-           return MaterialPageRoute(builder: (_) => FillingForm());
+           return MaterialPageRoute(builder: (_) => MainWebPage());
       case '/topics':
            return MaterialPageRoute(builder: (_) => Topics());
       case '/topic':
