@@ -165,23 +165,27 @@ class _MainWebPageState extends State<MainWebPage> {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 40,top: 30),
-            // padding:  EdgeInsets.symmetric(vertical: 32, horizontal: 48),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  // padding: EdgeInsets.all(10.0),
-                  child: Text("Список предложений", style: Theme.of(context).textTheme.headline4,),
-                ),
-                filtersRow(),
-                   bigRow(context)
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                margin: EdgeInsets.only(left: 40,top: 30),
+                // padding:  EdgeInsets.symmetric(vertical: 32, horizontal: 48),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      // padding: EdgeInsets.all(10.0),
+                      child: Text("Список предложений", style: Theme.of(context).textTheme.headline4,),
+                    ),
+                    filtersRow(),
+                    bigRow(context)
 
-              ],
-            )
-            ,),
+                  ],
+                )
+                ,),
+            ),
+          ),
         ],
       )
 
@@ -261,11 +265,14 @@ class _MainWebPageState extends State<MainWebPage> {
 
   Widget bigRow(BuildContext context){
     return Container(
-      margin: EdgeInsets.only(left: 40),
+      // width: MediaQuery.of(context).size.width*0.3,
+      margin: EdgeInsets.only(left: 0,top: 20),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(child: suggestionsList(),) ,
-          Expanded(child:Suggetioninfo(suggetionId: suggetionID,), flex:3),
+          suggestionsList() ,
+          Expanded(child:Suggetioninfo(suggetionId: suggetionID,)),
 
         ],
       ),
@@ -274,12 +281,16 @@ class _MainWebPageState extends State<MainWebPage> {
 
   suggestionsList() {
     return Container(
-      child:           StreamBuilder(
+      width: 318,
+      child: StreamBuilder(
         stream: store.collection("suggestions").snapshots(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
             QuerySnapshot querySnapshot = snapshot.data;
             return Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xFFD9E2EC),width: 3)
+              ),
               child:  ListView.builder(
                 shrinkWrap: true,
                 itemCount: querySnapshot.docs.length,
@@ -287,7 +298,10 @@ class _MainWebPageState extends State<MainWebPage> {
                   Map<String, dynamic> data = querySnapshot.docs[index].data();
                   String id =  querySnapshot.docs[index].id;
                   return Container(
+                      decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 2,color: Color(0xFFD9E2EC)))),
+                    padding: EdgeInsets.all(8),
                     height: 90,
+                    // height: 90,
                     child: InkWell(
                       onTap: () {
                         if (kIsWeb) {
@@ -299,21 +313,40 @@ class _MainWebPageState extends State<MainWebPage> {
                           Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) { return Suggetioninfo(suggetionId: id); }));
                         }
                       },
-                      child: Column (
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(flex:1,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(data["name"] ),
+                          Container(
+                            margin: EdgeInsets.only(right: 7),
+                              height:20,
+                              width: 20,
+                              child: Image.asset('assets/forPageMainWeb.png')),
+                          Expanded(
+                            child: Column (
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(bottom: 8),
+                                  child: Text(data["name"],style: TextStyle(
+                                    color: Color(0xFF0F609B),
+                                    fontWeight: FontWeight.normal,
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 14,
+                                    fontFamily: "PTRootUI",
+                                  ),),
+                                ),
+                                Expanded(
+                                  child: Text(data["solution"],maxLines: 2,style: TextStyle(
+                                    color: Color(0xFF102A43),
+                                    fontWeight: FontWeight.normal,
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 16,
+                                    fontFamily: "PTRootUI",
+                                  )),
+                                ),
+                              ],
                             ),
                           ),
-                          Expanded( flex:2,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(data["solution"] ),
-                            ),
-                          ),
-
                         ],
                       ),
                     ),
