@@ -1,3 +1,6 @@
+import 'dart:core';
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -17,7 +20,7 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
   Widget build(BuildContext context) {
 
       if (kIsWeb) {
-        return  buildBody2(context);
+        return  buildBody();
       }
       return buildMyScaffold(context, buildBody (), "Информация о  предложении");
 
@@ -36,7 +39,7 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
           return Container(padding: EdgeInsets.all(24), child: ListView(
             shrinkWrap: true,
             children: [
-            Container( padding:  EdgeInsets.all(20), child: Text(data["name"].toString() ),),
+            Container( padding:  EdgeInsets.all(20), child: buildBody2(context ,data ),),
 
 
           ],) , );
@@ -50,21 +53,21 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
       },)
     );
   }
-  Widget buildBody2 (BuildContext context){
+  Widget buildBody2 (BuildContext context, Map<String, dynamic> data){
     return Expanded(
       child: Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: VanColumn(context)),
+            Expanded(child: VanColumn(context, data)),
             Expanded(child: Container())
           ],
         ),
       ),
     );
   }
-  Widget VanColumn (BuildContext context){
+  Widget VanColumn (BuildContext context, Map<String, dynamic> data){
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -80,12 +83,16 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
                       height:30,
                       width: 30,
                       child: Image.asset('assets/forPageMainWeb.png')),
-                  Text('Рационализаторское предложение 1')
+                  Text(data['name'])
                 ]
               ),
             ),
             Row(children: [
               InkWell(child: Container(
+                margin: EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
+                    color: Color(0xFFF0F4F8)
+                ),
                 height: 32,
                 width: 170,
                 child: Row(
@@ -100,19 +107,27 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
                 ),
               ),),
               InkWell(child: Container(
+                margin: EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
+                    color: Color(0xFFF0F4F8)
+                ),
                 height: 32,
-                width: 170,
+                width: 215,
                 child: Row(
                   children: [
                     Container(
                         margin: EdgeInsets.only(right: 10,left: 12),
                         height: 14,
                         width: 14,
-                        child: Image.asset('assets/IconEdit.png')),
-                    Text('Редактирование')
+                        child: Image.asset('assets/IconMessage.png')),
+                    Text('Написать комментарий')
                   ],
                 ),
-              ),),              InkWell(child: Container(
+              ),),InkWell(child: Container(
+                margin: EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
+                  color: Color(0xFFF0F4F8)
+                ),
                 height: 32,
                 width: 170,
                 child: Row(
@@ -121,8 +136,8 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
                         margin: EdgeInsets.only(right: 10,left: 12),
                         height: 14,
                         width: 14,
-                        child: Image.asset('assets/IconEdit.png')),
-                    Text('Редактирование')
+                        child: Image.asset('assets/starIcon.png')),
+                    Text('Рассмотреть')
                   ],
                 ),
               ),)
@@ -132,10 +147,10 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(flex: 2,child: Container(margin: EdgeInsets.only(left: 15),child: ColumnName(context))),
-                  Expanded(flex: 2,child: ColumnTwo(context)),
-                  Expanded(flex: 2,child: ColumnThree(context)),
-                  Expanded(flex: 2,child: ColumnFo(context))
+                  Expanded(flex: 2,child: Container(margin: EdgeInsets.only(left: 15),child: ColumnName(context,data))),
+                  Expanded(flex: 2,child: ColumnTwo(context,data)),
+                  Expanded(flex: 2,child: ColumnThree(context,data)),
+                  Expanded(flex: 2,child: ColumnFo(context,data))
                 ],
               ),
             )
@@ -144,7 +159,7 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
     );
   }
 
-  Widget ColumnName (BuildContext context) {
+  Widget ColumnName (BuildContext context,Map<String, dynamic> data) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -153,44 +168,44 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
           'Статус'
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
-            'Статус'
+            'Смены статуса'
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
-            'Статус'
+            'Категория'
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
-            'Статус'
+            'Приоритет'
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
-            'Статус'
+            'Экономический эффект'
         ),),
       ],
     );
   }
-  Widget ColumnTwo (BuildContext context) {
+  Widget ColumnTwo (BuildContext context,Map<String, dynamic> data) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(margin: EdgeInsets.only(top: 10),child: Text(
-            'На рассмотрении',maxLines: 1,
+            data['status'],maxLines: 1,
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
             '12/12/20'
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
-            'НИОКР'
+            data['category']
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
             '155'
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
-            '100 000'
+            data['effect']
         ),),
       ],
     );
   }
-  Widget ColumnThree (BuildContext context) {
+  Widget ColumnThree (BuildContext context,Map<String, dynamic> data) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -219,7 +234,7 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
       ],
     );
   }
-  Widget ColumnFo (BuildContext context) {
+  Widget ColumnFo (BuildContext context,Map<String, dynamic> data) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -228,13 +243,13 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
             '2020-10-123'
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
-            '20/12/2020'
+            data['createDate'].toString()
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
             'Россети'
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
-            'Приморский'
+            data['branch']
         ),),
         Container(margin: EdgeInsets.only(top: 10),child: Text(
             'Иванов Иван'
