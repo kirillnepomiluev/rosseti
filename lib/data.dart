@@ -1,6 +1,5 @@
 
 String apiToken= "aHMRQr0ZUK8YVV7UmgwtKe8SzIz9QhCDi6hAxCHM1l04ihtc4OYGlc4P4qMp";
-bool isDarkTheme = false;
 String dbURL = "vit.1devfull.info";
 
 

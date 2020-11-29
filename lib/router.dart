@@ -9,6 +9,7 @@ import 'package:rosseti/ui/pages/accauntPage.dart';
 import 'package:rosseti/ui/pages/loginPage.dart';
 import 'package:rosseti/ui/pages/mainWebPage.dart';
 import 'package:rosseti/ui/pages/mySuggectionsPage.dart';
+import 'package:rosseti/ui/pages/settingsPage.dart';
 
 
 class Router {
@@ -25,6 +26,8 @@ class Router {
            return MaterialPageRoute(builder: (_) => FillingForm());
       case '/topic':
         return MaterialPageRoute(builder: (_) => Topic());
+      case '/setting':
+        return MaterialPageRoute(builder: (_) => SettingPage());
 
       case '/my':
         return MaterialPageRoute(builder: (_) => MyMainWebPage());
