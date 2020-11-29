@@ -1,16 +1,29 @@
-# rosseti
+# Rosseti – прототип команды 1DevFull участника финала Цифрового прорыва 2020. WebApp + Android + IOS
 
-A new Flutter application.
+## Решение от команды 1DevFull
+---
 
-## Getting Started
+Это FrontEnd , а тут [ссылка на BackEnd](https://github.com/WerWebWer/db_1devfull_ROSSETI_back)
 
-This project is a starting point for a Flutter application.
+Также там расположен [пример семантического поиска](https://github.com/WerWebWer/db_1devfull_ROSSETI_back#%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80-%D1%81%D0%B5%D0%BC%D0%B0%D0%BD%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%B0)
 
-A few resources to get you started if this is your first Flutter project:
+и [чат Бот](https://github.com/WerWebWer/db_1devfull_ROSSETI_bot)
+---
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## WebApp
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Позволяет заполнить заявку рационализаторского приложения. Возможность отслеживание пути прохождения заявки. Принятие решения по заявкам. Статистика.
+
+Версия WebApp, которую можно запустить в браузере в директории build/web. А также доступна [по ссылке](https://rosseti-c446a.web.app/#/)
+
+---
+
+## Android + IOS
+
+Удобный способ заполенния заявки по рациаонализаторскому приложению. Возможность отслеживать путь прохождения завки.
+Андроид APK [доступен тут](https://drive.google.com/drive/folders/1paYzl84SvMaqUfvPDuuxYrfOhHXGjeC_?usp=sharing)
+
+---
+
+---
+Что бы сделать билд Андроид или WebApp нужно среду разработки visual studio или Android Studio для Ios нужен Xcode. Так же установлений плагин Flutter и Flutter SDK Channel beta, 1.23.0-18.1.pre
