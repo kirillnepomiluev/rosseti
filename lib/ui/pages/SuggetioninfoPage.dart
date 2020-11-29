@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:rosseti/main.dart';
 import 'package:rosseti/widgets/MyScaffold.dart';
 
+import 'SuggetionChatPage.dart';
+
 class Suggetioninfo extends StatefulWidget {
   String suggetionId;
 
@@ -127,7 +129,13 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
                       ),
                     )
                   : Container(),
-              InkWell(
+            kIsWeb? Container() :
+            InkWell(
+              onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
+                    return SuggetionChat(suggetionId: widget.suggetionId,);
+                  }));
+              },
                 child: Container(
                   margin: EdgeInsets.only(right: 10),
                   decoration: BoxDecoration(
@@ -147,6 +155,7 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
                   ),
                 ),
               ),
+              kIsWeb? Container() : Container( height: 8.0,),
               (curUser["role"] == "expert" && kIsWeb)
                   ? InkWell(
                       child: Container(
@@ -426,7 +435,7 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
                 stream: store
                     .collection("suggestions")
                     .doc(widget.suggetionId)
-                    .collection("chat")
+                    .collection("chat").orderBy("time")
                     .snapshots(),
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -519,6 +528,7 @@ class _SuggetioninfoState extends State<Suggetioninfo> {
                         "text" : controllerMessage.text,
                         "aftor" : curUser["name"],
                         "aftorLogin" :curUser["login"],
+                        "time" : DateTime.now().millisecondsSinceEpoch
                       }
                     ).then((value) {
                       controllerMessage.text = "";
