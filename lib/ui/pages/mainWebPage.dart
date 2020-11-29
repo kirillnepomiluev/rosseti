@@ -366,11 +366,6 @@ class _MainWebPageState extends State<MainWebPage> {
                 },),
 
             );
-
-
-
-
-
           } else
             if (snapshot.hasError) {
               print(" firebaseError. " +snapshot.error.toString());
@@ -381,13 +376,7 @@ class _MainWebPageState extends State<MainWebPage> {
         },)
 
       ,);
-
-
-
   }
-
-
-
 }
 Widget dropDawnList(BuildContext context, {String title="", List<String> list, String value , String dialogTitle , Function function  }) {
   return Row(
