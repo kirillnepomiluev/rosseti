@@ -79,7 +79,7 @@ class _FillingFormState extends State<FillingForm> {
               } else {
                 addNewDoc(context, "suggestions", {
                   "createDate": 1606507384,
-                  "branch": "Отде название",
+                  "branch": "Отдел название",
                   "authors": [curUser],
                   "authorlogin" : curUser["login"],
                   "authorsPositions": [
