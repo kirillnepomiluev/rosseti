@@ -160,8 +160,22 @@ class _MainWebPageState extends State<MainWebPage> {
                       fontFamily: "PTRootUI",
                     )),
                   ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/setting');
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 32,left: 0),
+                    child: Text('Настройки',style: TextStyle(
+                      color: textWight,
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14,
+                      fontFamily: "PTRootUI",
+                    )),
+                  ),
                 )
-
               ],
             ),
           ),
