@@ -10,6 +10,12 @@ import 'package:rosseti/ui/pages/loginPage.dart';
 import 'package:rosseti/ui/pages/mainWebPage.dart';
 import 'package:rosseti/ui/pages/mySuggectionsPage.dart';
 import 'package:rosseti/ui/pages/settingsPage.dart';
+import 'package:rosseti/ui/pages/steps/step1Page.dart';
+import 'package:rosseti/ui/pages/steps/step2Page.dart';
+import 'package:rosseti/ui/pages/steps/step3Page.dart';
+import 'package:rosseti/ui/pages/steps/step4Page.dart';
+import 'package:rosseti/ui/pages/steps/step5Page.dart';
+import 'package:rosseti/ui/pages/steps/step6Page.dart';
 
 
 class Router {
@@ -37,6 +43,19 @@ class Router {
 
        case '/account':
            return MaterialPageRoute(builder: (_) => AccauntPage());
+
+           case '/StepOne':
+           return MaterialPageRoute(builder: (_) => StepOne());
+           case '/StepTwo':
+           return MaterialPageRoute(builder: (_) => StepTwo());
+           case '/StepThree':
+           return MaterialPageRoute(builder: (_) => StepThree());
+           case '/StepFour':
+           return MaterialPageRoute(builder: (_) => StepFour());
+           case '/StepFive':
+           return MaterialPageRoute(builder: (_) => StepFive());
+           case '/StepSix':
+           return MaterialPageRoute(builder: (_) => StepSix());
 
 
 

@@ -76,9 +76,8 @@ Scaffold buildMyScaffold(BuildContext context, Widget body, String title,
                     _routeName = '/my';
                     break;
                   case 2:
-                    _routeName = '/add';
+                    _routeName = '/StepOne';
                     break;
-
                 }
                 Navigator.pushNamed(context, _routeName);
               }),
